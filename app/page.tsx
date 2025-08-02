@@ -10,14 +10,14 @@ import {
   deleteTeam,
 } from "./lib/firestoreHelper";
 
-interface Pokemon {
+export interface Pokemon {
   name: string;
   type: string;
   image: string;
   base_experience: number;
 }
 
-interface Team {
+export interface Team {
   id: string;
   name: string;
   pokemons: Pokemon[];
@@ -287,10 +287,11 @@ export default function Home() {
             <p className="text-sm text-gray-500 mb-2">Type: {pokemon.type}</p>
             <button
               onClick={() => addToTeam(pokemon)}
-              disabled={
-                activeTeam?.pokemons.length >= 6 ||
-                activeTeam?.pokemons.some((p) => p.name === pokemon.name)
-              }
+                    disabled={
+            (activeTeam?.pokemons?.length ?? 0) >= 6 ||
+            (activeTeam?.pokemons?.some((p) => p.name === pokemon.name) ?? false)
+          }
+
               className={`text-white text-sm rounded-full py-1 mt-auto ${
                 activeTeam?.pokemons.some((p) => p.name === pokemon.name) ||
                 (activeTeam?.pokemons.length ?? 0) >= 6

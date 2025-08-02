@@ -9,6 +9,8 @@ import {
   getDocs,
 } from "firebase/firestore";
 
+import { Team } from "../page";
+import { Pokemon } from "../page";
 const TEAMS_COLLECTION = "teams";
 
 export async function saveTeam(team: Omit<Team, "id">) {
